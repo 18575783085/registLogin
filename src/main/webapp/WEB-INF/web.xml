@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name></display-name>
+  <listener>
+  	<listener-class>ou.listener.MyServletContextListener</listener-class>
+  </listener>
+  
+  <filter>
+  	<description>解决全站乱码过滤器</description>
+  	<filter-name>EncodeFilter</filter-name>
+  	<filter-class>ou.filter.EncodeFilter</filter-class>
+  	<init-param>
+  		<description>统一字符集</description>
+  		<param-name>encode</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>EncodeFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <servlet>
+    <servlet-name>RegistServlet1</servlet-name>
+    <servlet-class>ou.web.RegistServlet1</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RegistServlet2</servlet-name>
+    <servlet-class>ou.web.RegistServlet2</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>RegistServlet1</servlet-name>
+    <url-pattern>/servlet/RegistServlet1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegistServlet2</servlet-name>
+    <url-pattern>/servlet/RegistServlet2</url-pattern>
+  </servlet-mapping>	
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

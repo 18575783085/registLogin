@@ -21,7 +21,9 @@ import javax.servlet.http.HttpServletResponseWrapper;
  *
  */
 public class EncodeFilter implements Filter {
+	
 	private String encode;
+	
 	public void init(FilterConfig filterConfig) throws ServletException {
 		//从web.xml配置文件中的ServletConfig获取初始化参数
 		encode = filterConfig.getInitParameter("encode");
@@ -77,7 +79,7 @@ public class EncodeFilter implements Filter {
 						
 						//遍历出数组中的乱码
 						for (int i = 0; i < values.length; i++) {
-							/*	获取一个参数--->先将它转化为西欧编码的字节数组---->然后再通过utf-8编码变成字符串
+							/* 获取一个参数--->先将它转化为西欧编码的字节数组---->然后再通过utf-8编码变成字符串
 							 * 譬如：byte[] data = values[i].getBytes("ISO8859-1")
 							 * 		String value = new String(data,"utf-8")
 							 * 		

@@ -63,23 +63,21 @@
 
 					<div class="am-tabs-bd">
 						<div class="am-tab-panel am-active">
-							<form action="<%=request.getContextPath() %>/servlet/RegistServlet1" method="post">
+							<form action="${appPath }/servlet/RegistServlet1" method="post">
 								<span style="color:red">
-									<%=
-										request.getAttribute("msg") == null ? "":request.getAttribute("msg")
-									 %>
+									${msg }
 								</span>
 								<div class="user-email">
 									<label class="lab" for="email"><i class="am-icon-envelope-o"></i>
 									</label> <input class="inp" type="email" name="email" id="email" placeholder="请输入邮箱账号"
-										value="<%= request.getParameter("email")== null ? "":request.getParameter("email") %>"
+										value="${param.email }"
 										>
 
 								</div>
 								<div class="verification">
 									<label class="lab" for="code2"><i class="am-icon-code-fork"></i>
 									</label> <input class="inp" type="tel" name="valistr" id="code2" placeholder="请输入验证码"
-										value="<%= request.getParameter("valistr") == null ? "":request.getParameter("valistr") %>"
+										value="${param.valistr }"
 										>
 									<img alt="加载失败" src="${appPath}/images/yzm.jpg" width="" height="" id="verification">
 								</div>
@@ -87,14 +85,14 @@
 									<label class="lab" for="password"><i class="am-icon-lock"></i>
 									</label> <input class="inp" type="password" name="password" id="password"
 										placeholder="设置密码"
-										value="<%= request.getParameter("password") == null ? "":request.getParameter("password") %>"
+										value="${param.password}"
 										>
 								</div>
 								<div class="user-pass">
 									<label class="lab" for="passwordRepeat"><i class="am-icon-lock"></i>
 									</label> <input class="inp" type="password" name="password2" id="passwordRepeat"
 										placeholder="确认密码"
-										value="<%= request.getParameter("password2") == null ? "":request.getParameter("password2") %>"
+										value="${param.password2 }"
 										>
 								</div>
 
@@ -115,21 +113,19 @@
 						<div class="am-tab-panel">
 							<form action="<%=request.getContextPath() %>/servlet/RegistServlet2" method="post">
 								<span style="color:red">
-									<%=
-										request.getAttribute("msg") == null ? "":request.getAttribute("msg")
-									 %>
+									${msg }
 								</span>
 								<div class="user-phone">
 									<label class="lab" for="phone"><i
 										class="am-icon-mobile-phone am-icon-md"></i>
 									</label> <input class="inp" type="tel" name="phone" id="phone" placeholder="请输入手机号"
-											value="<%= request.getParameter("phone") == null ? "":request.getParameter("phone")%>"
+											value="${param.phone }"
 											>
 								</div>
 								<div class="verification">
 									<label class="lab" for="code"><i class="am-icon-code-fork"></i>
 									</label> <input class="inp" type="tel" name="smsvalistr" id="code" placeholder="请输入验证码"
-											value="<%= request.getParameter("smsvalistr") == null ? "":request.getParameter("smsvalistr") %>"
+											value="${param.smsvalistr }"
 											>
 									<a class="btn" href="javascript:void(0);"
 										onclick="sendMobileCode();" id="sendMobileCode"> <span
@@ -140,14 +136,14 @@
 									<label class="lab" for="password"><i class="am-icon-lock"></i>
 									</label> <input class="inp" type="password" name="password" id="password"
 										placeholder="设置密码"
-										value="<%= request.getParameter("password") == null ? "":request.getParameter("password") %>"
+										value="${param.password }"
 										>
 								</div>
 								<div class="user-pass">
 									<label class="lab" for="passwordRepeat"><i class="am-icon-lock"></i>
 									</label> <input class="inp" type="password" name="password2" id="passwordRepeat"
 										placeholder="确认密码"
-										value="<%= request.getParameter("password2") == null ? "":request.getParameter("password2") %>"
+										value="${param.password2 }"
 										>
 								</div>
 							<div class="login-links">

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 
 import ou.dao.UserDao;
 import ou.entity.User;
@@ -74,7 +75,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	/**
-	 * 使用手机号作为"用户名"登录的注册方法
+	 * 使用手机号作为"用户名"登录的注册方法的业务逻辑
 	 */
 	public int registPhone(User user) {
 		try {
@@ -98,6 +99,80 @@ public class UserDaoImpl implements UserDao {
 			return 0;
 		}
 		
+	}
+
+	/**
+	 * 通过邮箱和密码查找用户信息的业务逻辑
+	 */
+	public User loginEmail(String username, String password) {
+		//1.创建QueryRunner对象--->获取连接池对象
+		QueryRunner qr = new QueryRunner(DaoUtils.getPool());
+		
+		//2.编写sql语句 
+		String sql = "select * from user where email=? and password=?";
+		
+		try {
+			//3.执行sql语句，获取结果对象
+			User userEmail = qr.query(sql, new BeanHandler<User>(User.class),username,password);
+			
+			//4.返回结果对象
+			return userEmail;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+			//4.查询不到返回null
+			return null;
+		}
+		
+	}
+
+	/**
+	 * 通过手机号码和密码查找用户信息的业务逻辑
+	 */
+	public User loginPhone(String username, String password) {
+		//1.创建QueryRunner对象，来获取连接池对象
+		QueryRunner qr = new QueryRunner(DaoUtils.getPool());
+		
+		//2.编写sql语句
+		String sql = "select * from user where phone=? and password=?";
+		
+		try {
+			//3.执行sql语句，获取结果对象
+			User userPhone = qr.query(sql, new BeanHandler<User>(User.class),username,password);
+			
+			//4.返回结果对象
+			return userPhone;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			//4.查无结果则返回null
+			return null;
+		}
+	}
+
+	
+	/**
+	 * 通过用户名和密码查询用户信息的业务逻辑
+	 */
+	public User loginUser(String username, String password) {
+		//1.创建QueryRunner对象，来获取连接池对象
+		QueryRunner qr = new QueryRunner(DaoUtils.getPool());
+		
+		//2.编写sql语句
+		String sql = "select * from user where username=? and password=?";
+		
+		try {
+			//3.执行sql语句，获取结果对象
+			User userName = qr.query(sql, new BeanHandler<User>(User.class),username,password);
+			
+			//4.返回结果对象
+			return userName;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			//4.查无结果则返回null
+			return null;
+		}
 	}
 
 }

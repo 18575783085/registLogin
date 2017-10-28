@@ -34,15 +34,6 @@ public class RegistServlet1 extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		//1.接收参数
-		//获取邮箱参数
-		String email = request.getParameter("email");
-		//获取图片验证码
-		String valistr = request.getParameter("valistr");
-		//获取密码
-		String password = request.getParameter("password");
-		//获取确认密码
-		String password2 = request.getParameter("password2");
 		
 		//1.接收参数
 		//创建用户对象
@@ -64,8 +55,17 @@ public class RegistServlet1 extends HttpServlet {
 			request.getRequestDispatcher("/regist.jsp").forward(request, response);
 		}
 		
-		//3.2.图片验证码
-		//TODO 等等再做
+		//3.图片验证码
+		//3.1.获取图片验证码
+		Object valistr = request.getSession().getAttribute("valistr");
+		
+		//3.2判断验证码是否匹配
+		if(user.getValistr() != valistr || !user.getValistr().equals(valistr)){
+			//不匹配，请求转发到注册页面
+			request.setAttribute("msg", "图片验证码不匹配！");
+			request.getRequestDispatcher("/regist.jsp").forward(request, response);
+			return;
+		}
 		
 		
 		
@@ -89,9 +89,15 @@ public class RegistServlet1 extends HttpServlet {
 		//5.1调用业务层的注册方法（邮箱作为登录入口）
 		boolean result = userService.registEmail(user);
 		
-		//5.注册用户
+		//把用户实体类存进session域中
+		request.getSession().setAttribute("user", user);
+		
+		//5.2注册用户
 		if(result){
 			//注册成功
+			//5.3把用户实体类存进session域中
+			request.getSession().setAttribute("user", user);
+			
 			//6.注册成功，定时刷新跳转到登陆页面
 			response.getWriter().write("<font style='color:red'>恭喜您注册成功，3秒后跳转到登陆页面</font>");
 			response.setHeader("refresh", "3;url="+request.getContextPath()+"/login.jsp");

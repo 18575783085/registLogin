@@ -33,17 +33,6 @@ public class RegistServlet2 extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		/*//1.接收参数
-		//获取手机号码参数
-		String phone = request.getParameter("phone");
-		//获取短信验证码
-		String smsvalistr = request.getParameter("smsvalistr");
-		//获取密码
-		String password = request.getParameter("password");
-		//获取确认密码
-		String password2 = request.getParameter("password2");*/
-		
-		
 		//1.创建用户对象
 		User user = new User();
 		try {
@@ -80,9 +69,13 @@ public class RegistServlet2 extends HttpServlet {
 		//5.1调用业务层的注册方法（手机号码作为登录入口）
 		boolean result = userService.registPhone(user);
 		
+		
 		//5.2用户注册
 		if(result){
 			//注册成功
+			//5.3把用户实体类存进session域中
+			request.getSession().setAttribute("user", user);
+			
 			//6.注册成功，定时刷新跳转到登陆页面
 			response.getWriter().write("<font style='color:red'>恭喜您注册成功，3秒后跳转到登录页面</font>");
 			response.setHeader("refresh", "3;url="+request.getContextPath()+"/login.jsp");

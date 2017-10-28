@@ -33,6 +33,16 @@
     <servlet-name>RegistServlet2</servlet-name>
     <servlet-class>ou.web.RegistServlet2</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ValiImageServlet</servlet-name>
+    <servlet-class>ou.web.ValiImageServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>ou.web.LoginServlet</servlet-class>
+  </servlet>
+
+
 
 
   <servlet-mapping>
@@ -42,6 +52,14 @@
   <servlet-mapping>
     <servlet-name>RegistServlet2</servlet-name>
     <url-pattern>/servlet/RegistServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ValiImageServlet</servlet-name>
+    <url-pattern>/servlet/ValiImageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/servlet/LoginServlet</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

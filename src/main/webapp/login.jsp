@@ -14,6 +14,20 @@
 
 		<link rel="stylesheet" href="${appPath}/AmazeUI-2.4.2/assets/css/amazeui.css" />
 		<link href="${appPath}/css/dlstyle.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="${appPath }/js/jquery-1.4.2.js"></script>
+		<script>
+			$(function(){
+				/* 获取值---转码---赋值 */
+				//获取username对应的输入框
+				$inpt = $("input[name=username]").var();
+				//转码
+				var usernameVal = decodeURL($inpt.val());
+				
+				//修改输入框的值
+				$inpt.val(usernameVal);
+				
+			});
+		</script>
 	</head>
 
 	<body>
@@ -35,19 +49,19 @@
 						  <form>
 							   <div class="user-name">
 								    <label class="lab" for="user"><i class="am-icon-user"></i></label>
-								    <input class="inp" type="text" name="" id="user" placeholder="邮箱/手机/用户名">
+								    <input class="inp" type="text" name="username" value="${cookie.remname.value }" id="user" placeholder="邮箱/手机/用户名">
                  </div>
                  <div class="user-pass">
 								    <label class="lab" for="password"><i class="am-icon-lock"></i></label>
-								    <input class="inp" type="password" name="" id="password" placeholder="请输入密码">
+								    <input class="inp" type="password" name="password" id="password" placeholder="请输入密码">
                  </div>
               </form>
            </div>
             
             <div class="login-links">
-                <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
+                <label for="remember-me"><input id="remember-me" name="remname" value="true" type="checkbox" ${empty cookie.remname ? "":"checked='checked'" }>记住用户名</label>
 								<a href="#" class="am-fr">忘记密码</a>
-								<a href="register.html" class="zcnext am-fr am-btn-default">注册</a>
+								<a href="${appPath }/regist.jsp" class="zcnext am-fr am-btn-default">注册</a>
 								<br />
             </div>
 								<div class="am-cf">

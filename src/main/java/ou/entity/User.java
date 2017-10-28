@@ -113,7 +113,7 @@ public class User {
 		}
 		
 		//3.2.密码是否匹配
-		if(!password.equals(password) || password != password2){
+		if(!password.equals(password2) || password != password2){
 			throw new MsgException("两次密码不一致！");
 		}
 	}

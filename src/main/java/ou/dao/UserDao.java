@@ -25,4 +25,28 @@ public interface UserDao {
 	 */
 	public int registPhone(User user);
 
+	/**
+	 * 根据邮箱和密码实现用户登录
+	 * @param username 邮箱
+	 * @param password 密码
+	 * @return true:返回User类对象，反之返回null
+	 */
+	public User loginEmail(String username, String password);
+
+	/**
+	 * 根据手机号码和密码实现用户登录
+	 * @param username 手机号码
+	 * @param password 密码
+	 * @return true:返回User类对象，反之返回null
+	 */
+	public User loginPhone(String username, String password);
+
+	/**
+	 * 根据用户名和密码实现用户登录
+	 * @param username 用户名
+	 * @param password 密码
+	 * @return true:返回User类对象，反之返回null
+	 */
+	public User loginUser(String username, String password);
+
 }

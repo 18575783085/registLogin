@@ -36,4 +36,31 @@ public class UserServiceImpl implements UserService {
 		return row > 0;
 	}
 
+
+	/**
+	 * 调用Dao层的邮箱登录方法
+	 */
+	public User loginEmail(String username, String password) {
+		return userDao.loginEmail(username,password);
+	}
+
+
+	/**
+	 * 调用Dao层的手机号码登录方法
+	 */
+	public User loginPhone(String username, String password) {
+		return userDao.loginPhone(username,password);
+	}
+
+
+	/**
+	 * 调用Dao层的用户名登录方法
+	 */
+	public User loginUser(String username, String password) {
+		return userDao.loginUser(username,password);
+	}
+
+
+	
+
 }

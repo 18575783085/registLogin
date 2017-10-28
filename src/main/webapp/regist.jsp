@@ -5,7 +5,7 @@
 
 	<head lang="en">
 		<meta charset="UTF-8">
-		<title>注册</title>
+		<title>用户注册</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta name="format-detection" content="telephone=no">
@@ -79,7 +79,8 @@
 									</label> <input class="inp" type="tel" name="valistr" id="code2" placeholder="请输入验证码"
 										value="${param.valistr }"
 										>
-									<img alt="加载失败" src="${appPath}/images/yzm.jpg" width="" height="" id="verification">
+									<img src="${appPath}/servlet/ValiImageServlet" alt="加载失败" width="" height="" id="verification"
+									onclick="refreshCode(this)">
 								</div>
 								<div class="user-pass">
 									<label class="lab" for="password"><i class="am-icon-lock"></i>
@@ -147,7 +148,7 @@
 										>
 								</div>
 							<div class="login-links">
-								<label for="reader-me"> <input id="reader-me"
+								<label for="reader-me1"> <input id="reader-me1"
 									type="checkbox"> 点击表示您同意商城《服务协议》 </label>
 							</div>
 							<div class="am-cf">
@@ -196,5 +197,12 @@
 						</div>
 					</div>
 	</body>
+	
+	<script>
+		/* 点击刷新图片验证码 */
+		function refreshCode(thisobj){
+			thisobj.src = "${appPath}/servlet/ValiImageServlet?ye="+new Date().getTime(); 
+		}
+	</script>
 
 </html>
